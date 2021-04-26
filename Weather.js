@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Input from "./components/Input";
 import styled, {ThemeProvider} from 'styled-components/native';
-
+import TodoList from './TodoList';
 
 
 const weatherOptions = {
@@ -98,15 +98,15 @@ export default function Weather({ temp, condition }) {
             name={weatherOptions[condition].iconName || "weather-sunset"}
             color= "white" />
             <Text style={styles.temp}>{temp}˚c</Text>
-            
+            <TodoList></TodoList>
 
-            <TextInput
+            {/* <TextInput
             style={styles.textInput}
             onChangeText={(text) => onChangeText(text)}
             value={value}
             placeholder="아무거나 입력해주세요."
             />
-           
+            */}
         </View>
   
         {/*<View style={styles.item}>
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     },
     halfContainer: { 
         flex: 1,
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center"
     },
 
