@@ -90,8 +90,7 @@ export default function Weather({ temp, condition }) {
         // Background Linear Gradient
         colors={weatherOptions[condition].gradient}
         style={styles.container} >
-          
-            <StatusBar barStyle="light-content"/>
+          <StatusBar barStyle="light-content"/>
         <View style={styles.halfContainer}>
             <MaterialCommunityIcons 
             size = {96} 
@@ -99,14 +98,6 @@ export default function Weather({ temp, condition }) {
             color= "white" />
             <Text style={styles.temp}>{temp}˚c</Text>
             <TodoList></TodoList>
-
-            {/* <TextInput
-            style={styles.textInput}
-            onChangeText={(text) => onChangeText(text)}
-            value={value}
-            placeholder="아무거나 입력해주세요."
-            />
-            */}
         </View>
   
         {/*<View style={styles.item}>
@@ -151,6 +142,7 @@ const styles = StyleSheet.create({
         color: "white"
     },
     halfContainer: { 
+        marginTop: "5%",
         flex: 1,
         justifyContent: "flex-start",
         alignItems: "center"

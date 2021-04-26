@@ -10,7 +10,7 @@ import { theme } from './theme';
 
 const List = styled.ScrollView`
    width: 80%;
-   margin-bottom: 30px;
+   margin-bottom: 50px;
 `;
 
 const Title = styled.Text`
