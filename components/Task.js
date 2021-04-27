@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 import { images } from '../images';
-import Input from './Input';
+import Input from './TodoInput';
 
 const Container = styled.View`
     flex-direction: row;
@@ -30,6 +30,7 @@ const Task = ({ deleteTask, item, toggleTask, updateTask }) => {
         setIsEditing(true);
     };
     const _onSubmitEditing = () => {
+        console.log("submit")
         if (isEditing) {
             const editedTask = Object.assign({}, item, { text });
             setIsEditing(false);
@@ -39,10 +40,11 @@ const Task = ({ deleteTask, item, toggleTask, updateTask }) => {
     const _onBlur = () => {
         if (isEditing) {
             setIsEditing(false);
+            console.log(item.text)
             setText(item.text);
         }
     };
-    console.log("Task")
+
     return isEditing ? (
         <Input
             value ={text}

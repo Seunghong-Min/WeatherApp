@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { StyleSheet, View, Text, StatusBar, TouchableOpacity,TextInput } from "react-native";
+import React, {useState, useEffect} from "react";
+import { StyleSheet, View, Text, StatusBar, TouchableOpacity,TextInput, Modal, TouchableHighlight } from "react-native";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -7,7 +7,14 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Input from "./components/Input";
 import styled, {ThemeProvider} from 'styled-components/native';
 import TodoList from './TodoList';
-
+import { images } from './images';
+import * as Calendar from 'expo-calendar';
+import CalendarModal from './components/Modal'
+const Icon = styled.Image`
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+`;
 
 const weatherOptions = {
     Thunderstorm: {
@@ -70,9 +77,10 @@ const weatherOptions = {
     }
   };
 
-export default function Weather({ temp, condition }) {
-
+export default function Weather({ temp, condition, changeDate}) {
+  const [modalVisible, setModalVisible] = useState(false);
   const[value, onChangeText] = React.useState('값');
+  const [thedate, setThedate] = useState(null)
   /*state = {
     text: '',
     inputText: ''
@@ -84,14 +92,29 @@ export default function Weather({ temp, condition }) {
   }   
 */
 
+
+    const modalHandler= ()=>{
+      setModalVisible(true)
+    }
+
+
+    const dateHandler =(date)=>{
+      changeDate(date)
+      setModalVisible(false )
+    }
+  
     return (
-    
     <LinearGradient
         // Background Linear Gradient
         colors={weatherOptions[condition].gradient}
         style={styles.container} >
-          <StatusBar barStyle="light-content"/>
+          
+        {/* <StatusBar barStyle="light-content"/> */}
+        <CalendarModal modalVisible={modalVisible} setModalVisible={setModalVisible} setDate={dateHandler}></CalendarModal>
         <View style={styles.halfContainer}>
+            <TouchableOpacity style={styles.iconWrapper} onPress={modalHandler}>
+              <Icon source={images.calender}></Icon>
+            </TouchableOpacity>
             <MaterialCommunityIcons 
             size = {96} 
             name={weatherOptions[condition].iconName || "weather-sunset"}
@@ -137,12 +160,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    iconWrapper:{
+      flexDirection: "row",
+      paddingRight: '3%',
+      paddingTop: '1%',
+      width: "100%",
+      display: "flex",
+      justifyContent: "flex-end"
+    },
     temp: {
         fontSize: 42,
         color: "white"
     },
     halfContainer: { 
-        marginTop: "5%",
         flex: 1,
         justifyContent: "flex-start",
         alignItems: "center"
@@ -152,7 +182,7 @@ const styles = StyleSheet.create({
     itemLeft:{},
     square:{},
     itemText:{},
-    circular:{}
+    circular:{},
 
    /* title: {
         color: "white",

@@ -74,19 +74,22 @@ const TodoList =()=>{
 
     const _onBlur = () => {
         setNewTask('');
+
     };
 
 
     console.log(tasks)
-
+3
     return isReady ? ( <ThemeProvider theme={theme}>
     {/* <Title>TODO List</Title> */}
-        <Input placeholder="+ Add a Task" 
-            value={newTask}
-            onChangeText={_handleTextChange}
-            onSubmitEditing={_addTask}
-            onBlur={_onBlur}
-            />
+        <View style={{width: '80%', marginTop: '5%', marginBottom: '3%' }}>
+            <Input placeholder="+ Add a Task" 
+                value={newTask}
+                onChangeText={_handleTextChange}
+                onSubmitEditing={_addTask}
+                onBlur={_onBlur}
+                />
+        </View>
         <List >
             {Object.values(tasks)
             .reverse()
@@ -112,4 +115,5 @@ const TodoList =()=>{
 }
 
 export default TodoList
+
 

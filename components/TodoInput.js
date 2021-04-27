@@ -6,13 +6,14 @@ import PropTypes from 'prop-types';
 const StyledInput = styled.TextInput.attrs(({ theme }) => ({
     placeholderTextColor: "#fff",
 }))`
-    width: ${({ width }) => width - 40}px;
+    width: 100%;
     height: 60px;
     margin-top: 3%;
     margin-bottom: 3%;
     padding: 15px 20px;
     border-radius: 10px;
     font-size: 25px;
+    border: 1px solid #fff;
     color: #fff;
 `;
 
